@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void mostrarDialogo() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
         builder.setMessage(R.string.confirmarSalir);
         builder.setPositiveButton(R.string.btnd_aceptar, new DialogInterface.OnClickListener() {
             @Override
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         AlertDialog ad = builder.create();
-        ad.setCanceledOnTouchOutside(false);
+        ad.setCanceledOnTouchOutside(true);
         ad.show();
     }
 }
