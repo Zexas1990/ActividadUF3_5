@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/mnJava"
+        android:title="@string/mnJava"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/mnPython"
+        android:title="@string/mnPython"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/mnSalir"
+        android:title="@string/mnSalir"
+        app:showAsAction="always"/>
+
+</menu>

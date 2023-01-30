@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ActividadUF3_5</string>
+    <string name="mnJava">Java</string>
+    <string name="mnPython">Python</string>
+    <string name="mnSalir">Salir</string>
+    <string name="btn_cambiarTam">Cambiar Tamaño</string>
+    <string name="confirmarSalir">¿Esta seguro de que desea salir?</string>
+    <string name="btnd_aceptar">Aceptar</string>
+    <string name="btnd_cancelar">Cancelar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="holaMundo">Hola Mundo</string>
+    <string name="tam">%d</string>
+</resources>
