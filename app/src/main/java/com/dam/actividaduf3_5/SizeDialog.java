@@ -1,12 +1,22 @@
 package com.dam.actividaduf3_5;
 
+
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
 
 public class SizeDialog extends DialogFragment{
 //Iniciar el dialogo
@@ -15,8 +25,57 @@ public class SizeDialog extends DialogFragment{
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState){
-        View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_size, null);
+        View v = requireActivity().getLayoutInflater().inflate(R.layout.dialog_size, null);
+
+        etSize = v.findViewById(R.id.etSize);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(v);
+
+        builder.setTitle("Cambiar tamaño texto").setPositiveButton("Aceptar", null).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button btn = ((AlertDialog) dialogInterface).getButton(DialogInterface.BUTTON_POSITIVE);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (etSize.getText().toString().isEmpty()){
+                            Snackbar.make(view, "El tamaño no puede estar vacío", Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            int txtSize = Integer.parseInt(etSize.getText().toString());
+                            if (txtSize < 0) {
+                                Snackbar.make(view, "El tamaño debe ser mayor que 0", Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                alertDialog.dismiss();
+                                MainActivity.TAM = txtSize;
+                            }
+                        }
+
+                    }
+                });
+            }
+        });
+
+        return alertDialog;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
 }

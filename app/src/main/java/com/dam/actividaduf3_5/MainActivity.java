@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +23,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         btnCambiarTam = findViewById(R.id.btnCambiarTam);
+
         btnCambiarTam.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
+            SizeDialog dialog = new SizeDialog();
+            dialog.setCancelable(false);
+            dialog.show(getSupportFragmentManager(), "SizeDialog");
             }
                });
 
@@ -37,14 +42,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.mnSalir){
             mostrarDialogo();
+        }else if(item.getItemId() == R.id.mnJava){
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContenedor, new JavaFragment()).commit();
+
+        }else if(item.getItemId() == R.id.mnPython){
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContenedor, new PythonFragment()).commit();
+
         }
         return super.onOptionsItemSelected(item);
     }
